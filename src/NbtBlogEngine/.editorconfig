@@ -1,0 +1,70 @@
+# NOTE: Requires **VS2019 16.3** or later
+
+# NbtBlogEngine Rules
+# Description: NbtBlogEngine.ruleset
+
+# Code files
+[*.{cs,vb}]
+
+
+dotnet_diagnostic.CA1031.severity = none
+
+dotnet_diagnostic.CA1052.severity = none
+
+dotnet_diagnostic.CA1054.severity = none
+
+dotnet_diagnostic.CA1056.severity = none
+
+dotnet_diagnostic.CA1062.severity = none
+
+dotnet_diagnostic.CA1303.severity = none
+
+dotnet_diagnostic.CA1305.severity = none
+
+dotnet_diagnostic.CA1308.severity = none
+
+dotnet_diagnostic.CA1707.severity = none
+
+dotnet_diagnostic.CA1716.severity = none
+
+dotnet_diagnostic.CA1822.severity = none
+
+dotnet_diagnostic.CA2000.severity = none
+
+dotnet_diagnostic.CA2007.severity = none
+
+dotnet_diagnostic.CA2100.severity = none
+
+dotnet_diagnostic.CA5368.severity = none
+
+dotnet_diagnostic.SA0001.severity = none
+
+dotnet_diagnostic.SA1101.severity = none
+
+dotnet_diagnostic.SA1116.severity = none
+
+dotnet_diagnostic.SA1117.severity = none
+
+dotnet_diagnostic.SA1128.severity = none
+
+dotnet_diagnostic.SA1200.severity = none
+
+dotnet_diagnostic.SA1300.severity = none
+
+dotnet_diagnostic.SA1309.severity = none
+
+dotnet_diagnostic.SA1402.severity = none
+
+dotnet_diagnostic.SA1413.severity = none
+
+dotnet_diagnostic.SA1516.severity = none
+
+dotnet_diagnostic.SA1600.severity = none
+
+dotnet_diagnostic.SA1601.severity = none
+
+dotnet_diagnostic.SA1602.severity = none
+
+dotnet_diagnostic.SA1633.severity = none
+
+dotnet_diagnostic.SA1649.severity = none

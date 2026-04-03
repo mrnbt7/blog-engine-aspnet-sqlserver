@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<docs>
+
+  <!-- ==================== ISqlHelper ==================== -->
+
+  <ISqlHelper>
+    <summary>
+    Defines a contract for executing SQL commands against a SQL Server database.
+    Supports ad-hoc text queries and stored procedure execution.
+    </summary>
+  </ISqlHelper>
+
+  <ISqlHelper_ExecuteReader>
+    <summary>
+    Executes a SQL command and returns a <see cref="System.Data.SqlClient.SqlDataReader"/> for streaming rows.
+    The caller is responsible for disposing the reader, which automatically closes the underlying connection.
+    </summary>
+    <param name="commandText">The SQL query text or stored procedure name to execute.</param>
+    <param name="commandType">
+    Specifies how <paramref name="commandText"/> is interpreted.
+    Defaults to <see cref="System.Data.CommandType.Text"/> for ad-hoc queries.
+    Use <see cref="System.Data.CommandType.StoredProcedure"/> for stored procedure calls.
+    </param>
+    <param name="parameters">An optional array of <see cref="System.Data.SqlClient.SqlParameter"/> objects to bind to the command.</param>
+    <returns>
+    A <see cref="System.Data.SqlClient.SqlDataReader"/> instance opened with <see cref="System.Data.CommandBehavior.CloseConnection"/>,
+    ensuring the connection is closed when the reader is disposed.
+    </returns>
+    <example>
+    <code>
+    using (var reader = sqlHelper.ExecuteReader("usp_GetOrders", CommandType.StoredProcedure,
+        new SqlParameter("@Status", "Active")))
+    {
+        while (reader.Read()) { /* process rows */ }
+    }
+    </code>
+    </example>
+  </ISqlHelper_ExecuteReader>
+
+  <ISqlHelper_ExecuteNonQuery>
+    <summary>
+    Executes a SQL command that does not return a result set (INSERT, UPDATE, DELETE).
+    </summary>
+    <param name="commandText">The SQL query text or stored procedure name to execute.</param>
+    <param name="commandType">
+    Specifies how <paramref name="commandText"/> is interpreted.
+    Defaults to <see cref="System.Data.CommandType.Text"/> for ad-hoc queries.
+    Use <see cref="System.Data.CommandType.StoredProcedure"/> for stored procedure calls.
+    </param>
+    <param name="parameters">An optional array of <see cref="System.Data.SqlClient.SqlParameter"/> objects to bind to the command.</param>
+    <returns>The number of rows affected by the command.</returns>
+    <example>
+    <code>
+    int rowsAffected = sqlHelper.ExecuteNonQuery(
+        "DELETE FROM Orders WHERE Id = @Id",
+        parameters: new[] { new SqlParameter("@Id", 5) });
+    </code>
+    </example>
+  </ISqlHelper_ExecuteNonQuery>
+
+  <ISqlHelper_ExecuteScalar>
+    <summary>
+    Executes a SQL command and returns the first column of the first row in the result set.
+    Useful for aggregate queries such as COUNT, MAX, SUM, or retrieving a newly inserted identity value.
+    </summary>
+    <param name="commandText">The SQL query text or stored procedure name to execute.</param>
+    <param name="commandType">
+    Specifies how <paramref name="commandText"/> is interpreted.
+    Defaults to <see cref="System.Data.CommandType.Text"/> for ad-hoc queries.
+    Use <see cref="System.Data.CommandType.StoredProcedure"/> for stored procedure calls.
+    </param>
+    <param name="parameters">An optional array of <see cref="System.Data.SqlClient.SqlParameter"/> objects to bind to the command.</param>
+    <returns>
+    The first column of the first row in the result set, or <c>null</c> if the result set is empty.
+    </returns>
+    <example>
+    <code>
+    var count = (int)sqlHelper.ExecuteScalar("SELECT COUNT(*) FROM Orders");
+    </code>
+    </example>
+  </ISqlHelper_ExecuteScalar>
+
+  <!-- ==================== SqlHelper ==================== -->
+
+  <SqlHelper>
+    <summary>
+    Provides a lightweight ADO.NET helper for executing SQL commands against a SQL Server database.
+    Implements the Template Method pattern to centralise connection and command lifecycle management.
+    </summary>
+    <remarks>
+    <para>
+    This class supports both ad-hoc text queries and stored procedure execution through a unified API
+    by accepting a <see cref="System.Data.CommandType"/> parameter (defaulting to <see cref="System.Data.CommandType.Text"/>).
+    </para>
+    <para>
+    The default parameterless constructor reads the connection string from the
+    <c>SqlDbConnection</c> entry in the application's configuration file (App.config / Web.config).
+    </para>
+    </remarks>
+    <seealso cref="NbtBlogEngine.DataLayer.ISqlHelper"/>
+  </SqlHelper>
+
+  <SqlHelper_ConnectionString>
+    <summary>
+    The connection string used to connect to the SQL Server database.
+    </summary>
+  </SqlHelper_ConnectionString>
+
+  <SqlHelper_Ctor_Default>
+    <summary>
+    Initialises a new instance of the <see cref="NbtBlogEngine.DataLayer.SqlHelper"/> class using the
+    <c>SqlDbConnection</c> connection string from the application configuration.
+    </summary>
+    <exception cref="System.ArgumentNullException">
+    Thrown when the <c>SqlDbConnection</c> connection string is not found in the configuration.
+    </exception>
+  </SqlHelper_Ctor_Default>
+
+  <SqlHelper_Ctor_ConnectionString>
+    <summary>
+    Initialises a new instance of the <see cref="NbtBlogEngine.DataLayer.SqlHelper"/> class with the specified connection string.
+    </summary>
+    <param name="connectionString">
+    A valid SQL Server connection string.
+    Must not be <c>null</c>.
+    </param>
+    <exception cref="System.ArgumentNullException">
+    Thrown when <paramref name="connectionString"/> is <c>null</c>.
+    </exception>
+  </SqlHelper_Ctor_ConnectionString>
+
+  <SqlHelper_CreateCommand>
+    <summary>
+    Creates and configures a <see cref="System.Data.SqlClient.SqlCommand"/> with the specified parameters.
+    Acts as a factory method to centralise command construction and parameter binding.
+    </summary>
+    <param name="connection">The open or unopened <see cref="System.Data.SqlClient.SqlConnection"/> to associate with the command.</param>
+    <param name="commandText">The SQL query text or stored procedure name.</param>
+    <param name="commandType">
+    Indicates whether <paramref name="commandText"/> is a text query or stored procedure name.
+    </param>
+    <param name="parameters">An optional array of <see cref="System.Data.SqlClient.SqlParameter"/> objects to bind to the command.</param>
+    <returns>A fully configured <see cref="System.Data.SqlClient.SqlCommand"/> ready for execution.</returns>
+  </SqlHelper_CreateCommand>
+
+  <SqlHelper_Execute>
+    <summary>
+    Template method that manages the full connection and command lifecycle,
+    delegating the actual execution strategy to the <paramref name="operation"/> delegate.
+    The connection and command are automatically disposed after execution.
+    </summary>
+    <typeparam name="T">The return type of the SQL operation (e.g. <see cref="int"/>, <see cref="object"/>).</typeparam>
+    <param name="commandText">The SQL query text or stored procedure name.</param>
+    <param name="commandType">
+    Indicates whether <paramref name="commandText"/> is a text query or stored procedure name.
+    </param>
+    <param name="parameters">An optional array of <see cref="System.Data.SqlClient.SqlParameter"/> objects to bind to the command.</param>
+    <param name="operation">
+    A delegate that receives the configured <see cref="System.Data.SqlClient.SqlCommand"/> and returns the result.
+    This is the strategy that varies per execution method (e.g. ExecuteNonQuery, ExecuteScalar).
+    </param>
+    <returns>The result of the <paramref name="operation"/> delegate.</returns>
+  </SqlHelper_Execute>
+
+  <SqlHelper_ExecuteReader>
+    <summary>
+    Executes a SQL command and returns a <see cref="System.Data.SqlClient.SqlDataReader"/> for streaming rows.
+    </summary>
+    <remarks>
+    Unlike other execution methods, this method does <b>not</b> wrap the connection in a <c>using</c> block.
+    Instead, the connection is closed automatically when the returned <see cref="System.Data.SqlClient.SqlDataReader"/> is disposed,
+    via <see cref="System.Data.CommandBehavior.CloseConnection"/>.
+    </remarks>
+  </SqlHelper_ExecuteReader>
+
+  <SqlHelper_ExecuteNonQuery>
+    <summary>
+    Executes a SQL command that does not return a result set (INSERT, UPDATE, DELETE).
+    Returns the number of rows affected.
+    </summary>
+  </SqlHelper_ExecuteNonQuery>
+
+  <SqlHelper_ExecuteScalar>
+    <summary>
+    Executes a SQL command and returns the first column of the first row in the result set.
+    </summary>
+  </SqlHelper_ExecuteScalar>
+
+</docs>

@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="NbtBlogEngine.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - NBT Blog</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server" EnablePartialRendering="false">
+            <Scripts>
+                <asp:ScriptReference Path="~/Scripts/jquery-3.7.0.min.js" />
+            </Scripts>
+        </asp:ScriptManager>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" runat="server" href="~/">
+                    <span class="me-1">✍</span> NBT Blog
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Blog">Blog</a></li>
+                        <li class="nav-item" id="liPosts" runat="server" visible="false"><a class="nav-link" runat="server" href="~/Posts">My Posts</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">About</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item" id="liLogin" runat="server">
+                            <a class="nav-link" runat="server" href="~/Login">Login</a>
+                        </li>
+                        <li class="nav-item" id="liSignup" runat="server">
+                            <a class="nav-link btn btn-outline-light btn-sm ms-2 px-3" runat="server" href="~/Signup">Sign Up</a>
+                        </li>
+                        <li class="nav-item" id="liUser" runat="server" visible="false">
+                            <a class="nav-link" runat="server" href="~/Profile">
+                                <span class="badge bg-light text-dark">
+                                    <asp:Label ID="lblUserName" runat="server" />
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item" id="liLogout" runat="server" visible="false">
+                            <asp:LinkButton ID="btnLogout" runat="server" CssClass="nav-link" OnClick="btnLogout_Click">Logout</asp:LinkButton>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            <hr />
+            <footer class="text-center py-3">
+                <p>&copy; <%: DateTime.Now.Year %> NBT Blog. Built with ASP.NET Web Forms.</p>
+            </footer>
+        </div>
+    </form>
+    <script src="<%= ResolveUrl("~/Scripts/bootstrap.bundle.min.js") %>"></script>
+</body>
+</html>

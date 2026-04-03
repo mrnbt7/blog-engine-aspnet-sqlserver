@@ -1,0 +1,84 @@
+﻿/* ===== Global ===== */
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #2d3436;
+    background-color: #f8f9fa;
+}
+
+.body-content {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    min-height: calc(100vh - 200px);
+}
+
+.textarea { max-width: 400px; }
+
+a { color: #0d6efd; }
+a:hover { color: #0a58ca; }
+
+/* ===== Navbar ===== */
+.navbar-brand { font-weight: 700; letter-spacing: -0.5px; }
+
+/* ===== Cards ===== */
+.card { border: none; box-shadow: 0 1px 3px rgba(0,0,0,.08); transition: box-shadow .2s; }
+.card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.12); }
+
+/* ===== Blog post cards ===== */
+.post-card { margin-bottom: 1.5rem;  }
+.post-card .card-title a { text-decoration: none; color: #2d3436; font-weight: 600; }
+.post-card .card-title a:hover { color: #0d6efd; }
+.post-card .card-text { color: #636e72; line-height: 1.7; }
+.post-meta { font-size: 0.85rem; color: #b2bec3; }
+
+/* ===== Tags ===== */
+.badge { font-weight: 500; font-size: 0.75rem; }
+.badge.bg-secondary { background-color: #636e72 !important; }
+
+/* ===== Auth forms ===== */
+.auth-card {
+    max-width: 420px;
+    margin: 0 auto;
+    padding-top: 5vh;
+}
+
+.auth-card .card { width: 100%; }
+.auth-card .card-body { padding: 2.5rem; }
+.auth-card .form-label { font-weight: 500; font-size: 0.9rem; display: block; width: 100%; }
+.auth-card .form-control { width: 100% !important; max-width: 100% !important; display: block !important; }
+.auth-card input[type="text"],
+.auth-card input[type="password"] { width: 100% !important; max-width: 100% !important; }
+
+/* ===== Tag checkboxes ===== */
+.list-unstyled input[type="checkbox"] { margin-right: 0.5rem; }
+
+/* ===== Post editor ===== */
+.editor-toolbar { background: #fff; border: 1px solid #dee2e6; border-radius: .5rem; padding: 1rem; margin-bottom: 1.5rem; }
+
+/* ===== Post detail ===== */
+.post-detail { max-width: 760px; margin: 0 auto; }
+.post-detail h1 { font-weight: 700; font-size: 2rem; margin-bottom: .5rem; }
+.post-detail .post-body { line-height: 1.8; font-size: 1.05rem; color: #2d3436; }
+
+/* ===== Admin post list ===== */
+.post-list-item { padding: .75rem 0; border-bottom: 1px solid #f1f2f6; }
+.post-list-item:last-child { border-bottom: none; }
+
+/* ===== Hero section ===== */
+.hero { background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); color: #fff; border-radius: .75rem; padding: 3rem 2rem; margin-bottom: 2rem; }
+.hero h1 { font-weight: 700; font-size: 2.5rem; }
+.hero p { font-size: 1.15rem; opacity: .9; }
+
+/* ===== Footer ===== */
+footer { color: #b2bec3; font-size: 0.85rem; }
+footer hr { border-color: #dee2e6; }
+
+/* ===== Remove max-width on inputs ===== */
+input, select, textarea { max-width: 100%; }
+
+/* ===== Status badges ===== */
+.status-draft { color: #e17055; font-weight: 500; }
+.status-published { color: #00b894; font-weight: 500; }
+
+/* ===== Pagination ===== */
+.pagination-container { display: flex; align-items: center; gap: 2px; }
+.pagination-container a, .pagination-container span { min-width: 36px; text-align: center; }

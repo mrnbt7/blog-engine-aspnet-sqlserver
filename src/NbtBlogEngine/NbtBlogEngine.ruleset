@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="NbtBlogEngine Rules" ToolsVersion="16.0">
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <Rule Id="SA0001" Action="None" />
+    <Rule Id="SA1101" Action="None" />
+    <Rule Id="SA1116" Action="None" />
+    <Rule Id="SA1117" Action="None" />
+    <Rule Id="SA1128" Action="None" />
+    <Rule Id="SA1200" Action="None" />
+    <Rule Id="SA1300" Action="None" />
+    <Rule Id="SA1309" Action="None" />
+    <Rule Id="SA1402" Action="None" />
+    <Rule Id="SA1413" Action="None" />
+    <Rule Id="SA1516" Action="None" />
+    <Rule Id="SA1600" Action="None" />
+    <Rule Id="SA1601" Action="None" />
+    <Rule Id="SA1602" Action="None" />
+    <Rule Id="SA1633" Action="None" />
+    <Rule Id="SA1649" Action="None" />
+    <!-- SA1512: Single-line comments followed by blank line -->
+    <Rule Id="SA1512" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeQuality.Analyzers" RuleNamespace="Microsoft.CodeQuality.Analyzers">
+    <!-- CA1034: Nested types - used for SqlQueries organization -->
+    <Rule Id="CA1034" Action="None" />
+    <Rule Id="CA1031" Action="None" />
+    <Rule Id="CA1052" Action="None" />
+    <Rule Id="CA1054" Action="None" />
+    <Rule Id="CA1056" Action="None" />
+    <Rule Id="CA1062" Action="None" />
+    <Rule Id="CA1303" Action="None" />
+    <Rule Id="CA1707" Action="None" />
+    <Rule Id="CA1716" Action="None" />
+    <Rule Id="CA1822" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.NetCore.Analyzers" RuleNamespace="Microsoft.NetCore.Analyzers">
+    <Rule Id="CA1305" Action="None" />
+    <Rule Id="CA1308" Action="None" />
+    <Rule Id="CA2007" Action="None" />
+    <Rule Id="CA2100" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.NetFramework.Analyzers" RuleNamespace="Microsoft.NetFramework.Analyzers">
+    <Rule Id="CA2000" Action="None" />
+    <Rule Id="CA5368" Action="None" />
+  </Rules>
+</RuleSet>

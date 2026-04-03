@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+  "settings": {
+    "documentationRules": {
+      "companyName": "NbtBlogEngine",
+      "copyrightText": "Copyright (c) {companyName}. All rights reserved.",
+      "xmlHeader": false,
+      "documentInterfaces": false,
+      "documentExposedElements": false,
+      "documentInternalElements": false,
+      "documentPrivateElements": false,
+      "documentPrivateFields": false
+    },
+    "orderingRules": {
+      "usingDirectivesPlacement": "outsideNamespace"
+    },
+    "layoutRules": {
+    },
+    "namingRules": {
+      "allowCommonHungarianPrefixes": true
+    }
+  }
+}
