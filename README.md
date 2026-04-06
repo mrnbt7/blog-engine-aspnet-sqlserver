@@ -34,13 +34,13 @@ A lightweight blog engine built with ASP.NET Web Forms (.NET Framework 4.8), C#,
 3. Update the connection string in `src/NbtBlogEngine/Web.config`
 4. Open `src/NbtBlogEngine/NbtBlogEngine.sln` → Restore NuGet Packages → `F5`
 
-See [SETUP.md](setup.md) for detailed setup instructions.
+See [SETUP.md](docs/setup.md) for detailed setup instructions.
 
 ## Documentation
 
 | Document | Description |
 |----------|-------------|
-| [Setup](setup.md) | Prerequisites, database setup, build & run instructions |
+| [Setup](docs/setup.md) | Prerequisites, database setup, build & run instructions |
 | [Architecture Doc](docs/architecture-doc.md) | Architecture, design patterns, data flow, schema, security, testing |
 | [Coding Standards](docs/coding-standards.md) | Naming conventions, code style, SQL rules, architecture patterns |
 
